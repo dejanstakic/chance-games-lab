@@ -1,0 +1,169 @@
+/* -------------------------------------------------
+   GLOBAL BRANDING — Chance Games Lab
+-------------------------------------------------- */
+
+body {
+  background: #1a1a1a;
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------------- HEADER ---------------- */
+
+.cgl-header {
+  text-align: center;
+  padding: 1.5rem 1rem 1rem;
+  border-bottom: 1px solid #333;
+}
+
+.cgl-logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f0c040;
+  letter-spacing: 1px;
+}
+
+.cgl-subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #cccccc;
+  margin-top: 0.25rem;
+}
+
+/* ---------------- LAYOUT ---------------- */
+
+#layout {
+  display: grid;
+  grid-template-columns: 220px 1fr 220px;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 20px auto;
+  padding: 0 20px;
+  min-height: 70vh;
+}
+
+/* ---------------- SIDEBARS ---------------- */
+
+aside.sidebar-left,
+aside.sidebar-right {
+  background: #222;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+aside.sidebar-left h3 {
+  margin-top: 0;
+  color: #f0c040;
+}
+
+aside.sidebar-left ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+aside.sidebar-left li {
+  margin: 0.4rem 0;
+}
+
+aside.sidebar-left a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+aside.sidebar-left a:hover {
+  color: #f0c040;
+}
+
+/* ---------------- MAIN CONTENT ---------------- */
+
+main h1 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: #f0c040;
+}
+
+main p {
+  color: #cccccc;
+  margin-bottom: 1.5rem;
+}
+
+/* ---------------- GAME CARD GRID ---------------- */
+
+.card-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Game card */
+.game-card {
+  display: block;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-decoration: none;
+  color: #f5f5f5;
+  transition: 0.15s ease;
+}
+
+.game-card:hover {
+  background: #333;
+  border-color: #f0c040;
+}
+
+.game-card h3 {
+  margin: 0 0 0.3rem;
+  color: #f0c040;
+}
+
+.game-card p {
+  margin: 0;
+  color: #cccccc;
+  line-height: 1.4;
+}
+
+/* ---------------- FOOTER ---------------- */
+
+.cgl-footer {
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  color: #cccccc;
+  font-size: 0.9rem;
+  border-top: 1px solid #333;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media (max-width: 900px) {
+  #layout {
+    grid-template-columns: 200px 1fr;
+  }
+
+  .sidebar-right {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  #layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-left {
+    order: -1;
+  }
+
+  .cgl-logo {
+    font-size: 1.7rem;
+  }
+
+  .cgl-subtitle {
+    font-size: 0.9rem;
+  }
+}

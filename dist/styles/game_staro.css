@@ -1,0 +1,19 @@
+/* --- Shared game page layout --- */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #3b3a3a; /* dark background */
+  display: flex; /* center game canvas */
+  justify-content: center; /* horizontal center */
+  align-items: center; /* vertical center */
+  overflow: hidden; /* no scrollbars */
+}
+
+/* All Pixi game canvases */
+canvas {
+  display: block;
+  /* box-shadow: 0 0 12px #000; subtle shadow */
+  border-radius: 12px; /* optional rounded edges */
+}

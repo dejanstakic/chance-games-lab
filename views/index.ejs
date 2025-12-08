@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chance Games Lab</title>
+
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="logo"><a href="/">Chance Games Lab</a></div>
+      <nav>
+        <a href="/">Home</a>
+      </nav>
+    </header>
+
+    <!-- MAIN LAYOUT -->
+    <div id="layout">
+      <!-- SIDEBAR -->
+      <aside class="sidebar-left">
+        <h3>Games</h3>
+        <ul>
+          <% if (!isProduction) { %>
+          <li><a href="/game_1">Game 1</a></li>
+          <% } %>
+          <li><a href="/crazy_jumper">Crazy Jumper</a></li>
+          <li><a href="/keno_basic">Keno 40</a></li>
+          <li><a href="/keno_magic_ball">Magic Ball Keno</a></li>
+          <li><a href="/keno_stop_ball">Keno Stop Shot</a></li>
+          <li><a href="/forex_simulator">UpDown Challenge</a></li>
+          <% if (!isProduction) { %>
+          <li><a href="/example_slot">Example Slot</a></li>
+          <% } %>
+          <li>
+            <a href="/slot_fortune_forge_journey">Fortune Forge Journey</a>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main>
+        <h1>Chance Games Lab - Probability Playground</h1>
+        <p>Select a game to play.</p>
+
+        <div class="card-grid">
+          <% if (!isProduction) { %>
+          <a class="game-card" href="/game_1">
+            <div class="game-card-content">
+              <h3>Game 1</h3>
+              <p>A fast and simple example game using PixiJS.</p>
+            </div>
+          </a>
+          <% } %>
+
+          <a class="game-card" href="/crazy_jumper">
+            <div class="game-card-content">
+              <h3>Crazy Jumper</h3>
+              <p>A fast and simple example game using PixiJS.</p>
+            </div>
+          </a>
+
+          <a class="game-card" href="/keno_basic">
+            <div class="game-card-content">
+              <h3>Keno 40</h3>
+              <p>
+                Keno is a quick, lottery-style game. In this variant, players
+                can select up to 10 numbers from 1 to 40.
+              </p>
+            </div>
+          </a>
+
+          <a class="game-card" href="/keno_magic_ball">
+            <div class="game-card-content">
+              <h3>Magic Ball Keno</h3>
+              <p>
+                Magic Ball Keno lets players choose 1–6 numbers from 1–36; after
+                six are drawn, one becomes the magic ball, and matching it
+                multiplies the win by 11.
+              </p>
+            </div>
+          </a>
+
+          <a class="game-card" href="/keno_stop_ball">
+            <div class="game-card-content">
+              <h3>Keno Stop Shot</h3>
+              <p>
+                Keno Stop Shot draws numbers one by one until a stop shot
+                appears, and players win based on how many of their chosen
+                numbers hit before the draw ends.
+              </p>
+            </div>
+          </a>
+
+          <a class="game-card" href="/forex_simulator">
+            <div class="game-card-content">
+              <h3>UpDown Challenge</h3>
+              <p>
+                Predict whether the final position will end higher or lower
+                after 200 steps in the fast and exciting UpDown Challenge.
+              </p>
+            </div>
+          </a>
+
+          <% if (!isProduction) { %>
+          <a class="game-card" href="/example_slot">
+            <div class="game-card-content">
+              <h3>Example Slot</h3>
+              <p>A fast and simple example game using PixiJS.</p>
+            </div>
+          </a>
+          <% } %>
+
+          <a class="game-card" href="/slot_fortune_forge_journey">
+            <div class="game-card-content">
+              <h3>Fortune Forge Journey</h3>
+              <p>
+                A 5×3 slot with 5 lines, scatter wins, and a collect-to-win
+                feature where gathering 10 coins or gems awards a bonus prize.
+              </p>
+            </div>
+          </a>
+        </div>
+      </main>
+
+      <aside class="sidebar-right">
+        <!-- Right sidebar content (empty for now) -->
+      </aside>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>© 2025 Chance Games Lab — All rights reserved</footer>
+  </body>
+</html>
