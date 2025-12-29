@@ -1,0 +1,36 @@
+<h1>Hold 81</h1>
+
+<!-- GAME CANVAS -->
+<canvas id="hold81Canvas" width="800" height="600"></canvas>
+
+<!-- GAME DESCRIPTION -->
+<div class="game-info">
+  <h2>How to Play</h2>
+  <p>
+    81 Holds is a hold-and-spin style game played on a 9×9 grid divided into
+    nine 3×3 sub-grids. At the start, only the first sub-grid is active and you
+    have 3 respins.
+  </p>
+  <p>
+    On each spin, all empty cells in the active grids spin independently. If a
+    cell lands a winning value, that value is locked in place and the number of
+    respins is reset to 3. New sub-grids unlock automatically when two-thirds of
+    the active cells are filled.
+  </p>
+  <p>The game ends when no respins remain or all 81 cells are filled.</p>
+
+  <p>Each spin costs 100 credits, and the game has an RTP of 96%.</p>
+</div>
+
+<!-- JAVASCRIPT -->
+<!-- Load Pixi from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
+<!-- GSAP CDN -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+<!-- Load game code -->
+<% if (!isProduction) { %>
+<script type="module" src="/src/hold81.js"></script>
+<% } else { %>
+<script type="module" src="/assets/hold81.js"></script>
+<% } %>

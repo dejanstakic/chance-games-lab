@@ -1,0 +1,25 @@
+<h1>Game 1 Title</h1>
+
+<!-- GAME CANVAS -->
+<canvas id="gameCanvas1" width="800" height="600"></canvas>
+
+<!-- GAME DESCRIPTION -->
+<div class="game-info">
+  <h2>How to Play</h2>
+  <p>
+    This is a placeholder description. Replace this text with rules, RTP info,
+    features, etc.
+  </p>
+</div>
+
+<!-- JAVASCRIPT -->
+
+<!-- Load Pixi from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
+
+<!-- Load game code -->
+<% if (!isProduction) { %>
+<script type="module" src="/src/game_1.js"></script>
+<% } else { %>
+<script type="module" src="/assets/game_1.js"></script>
+<% } %>

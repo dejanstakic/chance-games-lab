@@ -75,28 +75,37 @@ import { kenoStopBall } from "./server/keno_stop_ball_core.js";
 import { newChange } from "./server/forex_simulator_core.js";
 import { exampleSlot } from "./server/example_slot_core.js";
 import { slotFortuneForgeJourney } from "./server/slot_fortune_forge_journey_core.js";
+import { hold81Spin } from "./server/hold81_core.js";
 
 // -------------------------------
 // ROUTES: PUBLIC / PRODUCTION
 // -------------------------------
-app.get("/", (req, res) => res.render("index"));
-app.get("/crazy_jumper", (req, res) => res.render("crazy_jumper"));
-app.get("/keno_basic", (req, res) => res.render("keno_basic"));
-app.get("/keno_magic_ball", (req, res) => res.render("keno_magic_ball"));
-app.get("/keno_stop_ball", (req, res) => res.render("keno_stop_ball"));
-app.get("/slot_fortune_forge_journey", (req, res) =>
-  res.render("slot_fortune_forge_journey")
-);
-app.get("/forex_simulator", (req, res) => res.render("forex_simulator"));
+app.get("/", (req, res) => res.render("pages/index"));
+// app.get("/", (req, res) =>
+//   res.render("layouts/main", {
+//     title: "Chance Games Lab",
+//     body: render("pages/index"),
+//   })
+// );
+
 // Add finished games here...
+app.get("/crazy_jumper", (req, res) => res.render("pages/crazy_jumper"));
+app.get("/keno_basic", (req, res) => res.render("pages/keno_basic"));
+app.get("/keno_magic_ball", (req, res) => res.render("pages/keno_magic_ball"));
+app.get("/keno_stop_ball", (req, res) => res.render("pages/keno_stop_ball"));
+app.get("/slot_fortune_forge_journey", (req, res) =>
+  res.render("pages/slot_fortune_forge_journey")
+);
+app.get("/forex_simulator", (req, res) => res.render("pages/forex_simulator"));
+app.get("/hold81", (req, res) => res.render("pages/hold81"));
 
 // -------------------------------
 // ROUTES: DEVELOPMENT ONLY
 // -------------------------------
 if (!isProduction) {
-  app.get("/game_1", (req, res) => res.render("game_1"));
-  app.get("/example_slot", (req, res) => res.render("example_slot"));
-  app.get("/virtual_race", (req, res) => res.render("virtual_race"));
+  app.get("/game_1", (req, res) => res.render("pages/game_1"));
+  app.get("/example_slot", (req, res) => res.render("pages/example_slot"));
+  app.get("/virtual_race", (req, res) => res.render("pages/virtual_race"));
 }
 
 // -------------------------------
@@ -165,6 +174,22 @@ app.post("/api/slot_fortune_forge_journey/spin", (req, res) => {
 
   res.json(spinResult);
 });
+
+// Hold 81 API
+app.post("/api/hold81/spin", (req, res) => {
+  const { balance } = req.body;
+  res.json(hold81Spin(balance));
+});
+
+/////////////
+//
+//  END API.POST
+//
+/////////////////
+
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // -------------------------------
 // FOREX SIMULATOR (WebSocket)

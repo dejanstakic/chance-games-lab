@@ -1,0 +1,160 @@
+<h1>Fortune Forge Journey</h1>
+
+<!-- GAME CANVAS -->
+<canvas id="slotFortuneForgeJourneyCanvas" width="800" height="600"></canvas>
+
+<!-- GAME DESCRIPTION -->
+<div class="game-info">
+  <h2>Fortune Forge Journey</h2>
+  <p>
+    Fortune Forge Journey is a 5-reel, 3-row slot game with 5 paylines that pay
+    from left to right when three or more symbols appear on a line. A special
+    Star symbol is on reels 1, 3, and 5, pays whenewer are 3 of them on the
+    screen.
+  </p>
+  <p>
+    The game also includes a collection feature: coins and gems can appear
+    during spins, and each collected item fills one position in the forge meter.
+    When the player collects all 10 items, a special reward of 75 is granted
+  </p>
+  <p>RTP is 104.12%</p>
+  <div class="paytable-card">
+    <h2 class="paytable-title">Paytable</h2>
+
+    <table class="paytable-table">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img
+                src="/assets/slot_fortune_forge_journey/basic_8.png"
+                alt="S1"
+              />
+            </div>
+          </td>
+          <td>0.25</td>
+          <td>0.5</td>
+          <td>1</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img
+                src="/assets/slot_fortune_forge_journey/basic_9.png"
+                alt="S2"
+              />
+            </div>
+          </td>
+          <td>0.25</td>
+          <td>0.5</td>
+          <td>1</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img
+                src="/assets/slot_fortune_forge_journey/basic_10.png"
+                alt="S3"
+              />
+            </div>
+          </td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img
+                src="/assets/slot_fortune_forge_journey/basic_j.png"
+                alt="S4"
+              />
+            </div>
+          </td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img
+                src="/assets/slot_fortune_forge_journey/basic_q.png"
+                alt="S5"
+              />
+            </div>
+          </td>
+          <td>5</td>
+          <td>10</td>
+          <td>15</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img
+                src="/assets/slot_fortune_forge_journey/basic_k.png"
+                alt="S6"
+              />
+            </div>
+          </td>
+          <td>8</td>
+          <td>15</td>
+          <td>20</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img
+                src="/assets/slot_fortune_forge_journey/basic_a.png"
+                alt="S6"
+              />
+            </div>
+          </td>
+          <td>10</td>
+          <td>20</td>
+          <td>25</td>
+        </tr>
+
+        <!-- <tr>
+                  <td>
+                    <div class="symbol-cell">
+                      <img src="/images/slot/star.png" alt="Star" />
+                      <span>Star</span>
+                    </div>
+                  </td>
+                  <td colspan="3" class="scatter-info">
+                    Pays anywhere on reels <strong>1, 3, 5</strong>
+                  </td>
+                </tr> -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<!-- Load Pixi from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
+<!-- GSAP CDN -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+<!-- Load game code -->
+<% if (!isProduction) { %>
+<script type="module" src="/src/slot_fortune_forge_journey.js"></script>
+<% } else { %>
+<script type="module" src="/assets/slot_fortune_forge_journey.js"></script>
+<% } %>

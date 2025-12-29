@@ -1,0 +1,30 @@
+<h1>Keno Stop Shot</h1>
+
+<!-- GAME CANVAS -->
+<canvas id="kenoStopBallCanvas" width="800" height="600"></canvas>
+
+<!-- GAME DESCRIPTION -->
+<div class="game-info">
+  <h2>Keno Stop Shot</h2>
+  <p>
+    Keno Stop Shot is another keno variant with an added twist. The player
+    selects 1–10 numbers from a range of 1 to 40. The draw then begins,
+    revealing numbers one by one. The draw continues until a “stop shot” appears
+    — there are three of them in the pool. All numbers drawn before the stop
+    shot count toward the player’s matches, and the payout is based on how many
+    selected numbers were hit before the draw ends. The tension comes from not
+    knowing how long the draw will last. RTP is 96.12%
+  </p>
+</div>
+
+<!-- JAVASCRIPT -->
+<!-- Load Pixi from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
+<!-- GSAP CDN -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<!-- Load game code -->
+<% if (!isProduction) { %>
+<script type="module" src="/src/keno_stop_ball.js"></script>
+<% } else { %>
+<script type="module" src="/assets/keno_stop_ball.js"></script>
+<% } %>

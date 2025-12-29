@@ -1,13 +1,3 @@
-// import {
-//   Application,
-//   Graphics,
-//   Text,
-//   Container,
-//   Sprite,
-//   Assets,
-//   BlurFilter,
-// } from "pixi.js";
-// import { gsap } from "gsap";
 const { Application, Graphics, Text, Container, Sprite, Assets, BlurFilter } =
   PIXI;
 

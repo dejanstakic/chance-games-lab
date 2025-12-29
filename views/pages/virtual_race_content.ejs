@@ -1,0 +1,20 @@
+<h1>Virtual Race</h1>
+
+<!-- GAME CANVAS -->
+<canvas id="virtualRaceCanvas" width="800" height="600"></canvas>
+
+<!-- GAME DESCRIPTION -->
+<div class="game-info">
+  <h2>How to Play</h2>
+  <p>
+    This is a placeholder description. Replace this text with rules, RTP info,
+    features, etc.
+  </p>
+</div>
+
+<!-- JAVASCRIPT -->
+<% if (!isProduction) { %>
+<script type="module" src="/src/virtual_race.js"></script>
+<% } else { %>
+<script type="module" src="/assets/virtual_race.js"></script>
+<% } %>

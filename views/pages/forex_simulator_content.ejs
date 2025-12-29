@@ -1,0 +1,31 @@
+<h1>UpDown Challenge</h1>
+
+<!-- GAME CANVAS -->
+<canvas id="forexSimulatorCanvas" width="800" height="600"></canvas>
+
+<!-- GAME DESCRIPTION -->
+<div class="game-info">
+  <h2>UpDown Challenge</h2>
+  <p>
+    UpDown Challenge is a simple prediction game where a moving spot represents
+    a simulated price or value. At each step the spot can go up, down, or stay
+    the same, creating an unpredictable 200-step path. Before the simulation
+    begins, the player chooses High or Low, predicting whether the final
+    position will end above or below the starting point. When all 200 steps are
+    completed, the outcome is revealed and winnings are paid based on the
+    prediction.RTP is 96.01%
+  </p>
+</div>
+
+<!-- JAVASCRIPT -->
+<!-- Socket.IO client -->
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<!-- Load Pixi from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
+
+<!-- Load game code -->
+<% if (!isProduction) { %>
+<script type="module" src="/src/forex_simulator.js"></script>
+<% } else { %>
+<script type="module" src="/assets/forex_simulator.js"></script>
+<% } %>

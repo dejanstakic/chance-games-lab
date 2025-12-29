@@ -36,6 +36,9 @@
           <li>
             <a href="/slot_fortune_forge_journey">Fortune Forge Journey</a>
           </li>
+          <% if (!isProduction) { %>
+          <li><a href="/hold81">Hold 81</a></li>
+          <% } %>
         </ul>
       </aside>
 
@@ -121,6 +124,18 @@
               </p>
             </div>
           </a>
+
+          <% if (!isProduction) { %>
+          <a class="game-card" href="/hold81">
+            <div class="game-card-content">
+              <h3>Hold 81</h3>
+              <p>
+                81 Holds – Lock numbers, reset respins, unlock grids, and push
+                your luck on an expanding 9×9 board.
+              </p>
+            </div>
+          </a>
+          <% } %>
         </div>
       </main>
 

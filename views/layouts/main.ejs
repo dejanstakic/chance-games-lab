@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= title || "Chance Games Lab" %></title>
+
+    <link rel="stylesheet" href="/styles/main.css" />
+    <% if (pageStyles) { %> <% pageStyles.forEach(href => { %>
+    <link rel="stylesheet" href="<%= href %>" />
+    <% }) %> <% } %>
+  </head>
+
+  <body>
+    <%- include("../partials/header") %>
+
+    <div id="layout">
+      <%- include("../partials/sidebar-left") %>
+
+      <main><%- include(content) %></main>
+
+      <%- include("../partials/sidebar-right") %>
+    </div>
+
+    <%- include("../partials/footer") %>
+  </body>
+</html>

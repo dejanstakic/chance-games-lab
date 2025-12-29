@@ -14,6 +14,7 @@ export default defineConfig({
         forex_simulator: "src/forex_simulator.js",
         example_slot: "src/example_slot.js",
         slot_fortune_forge_journey: "src/slot_fortune_forge_journey.js",
+        hold81: "src/hold81.js",
       },
       output: {
         // all game files appear as:
