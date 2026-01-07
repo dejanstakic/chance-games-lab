@@ -1,0 +1,150 @@
+<h1>Expanding Wilds</h1>
+
+<!-- GAME CANVAS -->
+<canvas id="slotExpandingWildsCanvas" width="800" height="600"></canvas>
+
+<!-- GAME DESCRIPTION -->
+<div class="game-info">
+  <h2>Expanding Wilds</h2>
+  <p>
+    Expanding Wilds is a 5-reel, 3-row slot game with 9 paylines that pay from
+    left to right when three or more symbols appear on a line. A special
+    Expanding Wild symbol is on every reel, when it appears it expands to every
+    symbol on the reel and can substitute any symbol
+  </p>
+
+  <p>RTP is 104.09%</p>
+  <div class="paytable-card">
+    <h2 class="paytable-title">Paytable</h2>
+
+    <table class="paytable-table">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img
+                src="/assets/slot_expanding_wilds/symbol_1.png"
+                alt="S1 - wild"
+              />
+            </div>
+          </td>
+          <td>45</td>
+          <td>65</td>
+          <td>85</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img src="/assets/slot_expanding_wilds/symbol_2.png" alt="S2" />
+            </div>
+          </td>
+          <td>50</td>
+          <td>75</td>
+          <td>100</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img src="/assets/slot_expanding_wilds/symbol_3.png" alt="S3" />
+            </div>
+          </td>
+          <td>40</td>
+          <td>60</td>
+          <td>80</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img src="/assets/slot_expanding_wilds/symbol_4.png" alt="S4" />
+            </div>
+          </td>
+          <td>30</td>
+          <td>50</td>
+          <td>70</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img src="/assets/slot_expanding_wilds/symbol_5.png" alt="S5" />
+            </div>
+          </td>
+          <td>10</td>
+          <td>20</td>
+          <td>30</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img src="/assets/slot_expanding_wilds/symbol_6.png" alt="S6" />
+            </div>
+          </td>
+          <td>5</td>
+          <td>10</td>
+          <td>20</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img src="/assets/slot_expanding_wilds/symbol_7.png" alt="S7" />
+            </div>
+          </td>
+          <td>0.75</td>
+          <td>3</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img src="/assets/slot_expanding_wilds/symbol_8.png" alt="S8" />
+            </div>
+          </td>
+          <td>0.50</td>
+          <td>1</td>
+          <td>2</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="symbol-cell">
+              <img
+                src="/assets/slot_expanding_wilds/symbol_9.png"
+                alt="S9-scatter"
+              />
+            </div>
+          </td>
+          <td>4</td>
+          <td>20</td>
+          <td>50</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<!-- Load Pixi from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
+<!-- GSAP CDN -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+<!-- Load game code -->
+<% if (!isProduction) { %>
+<script type="module" src="/src/slot_expanding_wilds.js"></script>
+<% } else { %>
+<script type="module" src="/assets/slot_expanding_wilds.js"></script>
+<% } %>

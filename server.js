@@ -76,6 +76,7 @@ import { newChange } from "./server/forex_simulator_core.js";
 import { exampleSlot } from "./server/example_slot_core.js";
 import { slotFortuneForgeJourney } from "./server/slot_fortune_forge_journey_core.js";
 import { hold81Spin } from "./server/hold81_core.js";
+import { slotExpandingWilds } from "./server/slot_expanding_wilds_core.js";
 
 // -------------------------------
 // ROUTES: PUBLIC / PRODUCTION
@@ -98,6 +99,9 @@ app.get("/slot_fortune_forge_journey", (req, res) =>
 );
 app.get("/forex_simulator", (req, res) => res.render("pages/forex_simulator"));
 app.get("/hold81", (req, res) => res.render("pages/hold81"));
+app.get("/slot_expanding_wilds", (req, res) =>
+  res.render("pages/slot_expanding_wilds")
+);
 
 // -------------------------------
 // ROUTES: DEVELOPMENT ONLY
@@ -179,6 +183,12 @@ app.post("/api/slot_fortune_forge_journey/spin", (req, res) => {
 app.post("/api/hold81/spin", (req, res) => {
   const { balance } = req.body;
   res.json(hold81Spin(balance));
+});
+
+// slot Expanding Wilds
+app.post("/api/slot_expanding_wilds/spin", (req, res) => {
+  const { balance } = req.body;
+  res.json(slotExpandingWilds(balance));
 });
 
 /////////////
