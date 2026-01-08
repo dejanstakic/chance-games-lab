@@ -15,6 +15,7 @@ export default defineConfig({
         example_slot: "src/example_slot.js",
         slot_fortune_forge_journey: "src/slot_fortune_forge_journey.js",
         slot_expanding_wilds: "src/slot_expanding_wilds",
+        slot_both_way: "src/slot_both_way",
         hold81: "src/hold81.js",
       },
       output: {

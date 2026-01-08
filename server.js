@@ -77,6 +77,7 @@ import { exampleSlot } from "./server/example_slot_core.js";
 import { slotFortuneForgeJourney } from "./server/slot_fortune_forge_journey_core.js";
 import { hold81Spin } from "./server/hold81_core.js";
 import { slotExpandingWilds } from "./server/slot_expanding_wilds_core.js";
+import { slotBothWay } from "./server/slot_both_way_core.js";
 
 // -------------------------------
 // ROUTES: PUBLIC / PRODUCTION
@@ -102,6 +103,7 @@ app.get("/hold81", (req, res) => res.render("pages/hold81"));
 app.get("/slot_expanding_wilds", (req, res) =>
   res.render("pages/slot_expanding_wilds")
 );
+app.get("/slot_both_way", (req, res) => res.render("pages/slot_both_way"));
 
 // -------------------------------
 // ROUTES: DEVELOPMENT ONLY
@@ -189,6 +191,12 @@ app.post("/api/hold81/spin", (req, res) => {
 app.post("/api/slot_expanding_wilds/spin", (req, res) => {
   const { balance } = req.body;
   res.json(slotExpandingWilds(balance));
+});
+
+// slot Both Way
+app.post("/api/slot_both_way/spin", (req, res) => {
+  const { balance } = req.body;
+  res.json(slotBothWay(balance));
 });
 
 /////////////
