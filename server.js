@@ -6,14 +6,17 @@ import { dirname, join } from "path";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import dotenv from "dotenv";
+dotenv.config();
 
-import nodemailer from "nodemailer";
+// import nodemailer from "nodemailer";
 import rateLimit from "express-rate-limit";
 
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 // -------------------------------
 // Load environment
 // -------------------------------
-dotenv.config();
 const isProduction = process.env.NODE_ENV === "production";
 const PORT = process.env.PORT || 3000;
 
@@ -144,70 +147,35 @@ app.get("/api/game_1/spin", (req, res) => {
 // Contact form submit
 app.post("/contact", contactLimiter, async (req, res) => {
   try {
-    const { name, email, subject, message, website } = req.body; // website = honeypot
+    const { name, email, subject, message, website, ts } = req.body;
 
-    // Honeypot: real users won't fill this
-    if (website && website.trim().length > 0) {
-      return res.status(200).render("pages/contact", {
-        title: "Contact",
-        pageStyles: ["/css/contact.css"],
-        success: true,
-      });
-    }
-
-    // time trap
-    const ts = Number(req.body.ts || 0);
-    if (!ts || Date.now() - ts < 1500) {
-      // too fast -> likely bot
-      return res
-        .status(200)
-        .render("pages/contact", { title: "Contact", success: true });
+    // Honeypot
+    if (website && website.trim()) {
+      return res.render("pages/contact", { success: true });
     }
 
     if (!email || !message) {
-      return res.status(400).render("pages/contact", {
-        title: "Contact",
-        pageStyles: ["/css/contact.css"],
+      return res.render("pages/contact", {
         error: "Please provide your email and a message.",
       });
     }
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT || 587),
-      secure: process.env.SMTP_SECURE === "true", // false for 587/TLS
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
-    const safeSubject = (subject || "Website contact").toString().slice(0, 120);
-
-    await transporter.sendMail({
-      from: `"Chance Games Lab" <${process.env.SMTP_USER}>`,
+    await resend.emails.send({
+      from: process.env.CONTACT_FROM,
       to: process.env.CONTACT_TO,
-      replyTo: email,
-      subject: `[Contact] ${safeSubject}`,
-      text:
-        `Name: ${name || "-"}\n` +
-        `Email: ${email}\n` +
-        `Subject: ${safeSubject}\n\n` +
-        `${message}\n`,
+      reply_to: email,
+      subject: `[Contact] ${String(subject || "Website contact").slice(
+        0,
+        120
+      )}`,
+      text: `Name: ${name || "-"}\n` + `Email: ${email}\n\n` + `${message}\n`,
     });
 
-    return res.status(200).render("pages/contact", {
-      title: "Contact",
-      pageStyles: ["/css/contact.css"],
-      success: true,
-    });
+    res.render("pages/contact", { success: true });
   } catch (err) {
     console.error("Contact form error:", err);
-    return res.status(500).render("pages/contact", {
-      title: "Contact",
-      pageStyles: ["/css/contact.css"],
-      error:
-        "Sorry—something went wrong while sending your message. Please try again later.",
+    res.render("pages/contact", {
+      error: "Could not send message right now. Please try again later.",
     });
   }
 });
