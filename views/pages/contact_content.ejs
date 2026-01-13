@@ -1,0 +1,64 @@
+<section class="contact">
+  <h1>Contact</h1>
+  <p class="muted">
+    Questions, feedback, bug reports, or collaboration — send a message.
+  </p>
+
+  <% if (typeof success !== "undefined" && success) { %>
+  <div class="alert success">Message sent. Thanks!</div>
+  <% } %> <% if (typeof error !== "undefined" && error) { %>
+  <div class="alert error"><%= error %></div>
+  <% } %>
+
+  <form method="POST" action="/contact" class="contact-form" autocomplete="on">
+    <div class="row">
+      <label>
+        Your name (optional)
+        <input type="text" name="name" maxlength="60" />
+      </label>
+
+      <label>
+        Your email *
+        <input type="email" name="email" required maxlength="120" />
+      </label>
+    </div>
+
+    <label>
+      Subject
+      <select name="subject">
+        <option value="General feedback">General feedback</option>
+        <option value="Bug report">Bug report</option>
+        <option value="Game suggestion">Game suggestion</option>
+        <option value="Business / collaboration">
+          Business / collaboration
+        </option>
+        <option value="Other">Other</option>
+      </select>
+    </label>
+
+    <label>
+      Message *
+      <textarea name="message" required rows="7" maxlength="4000"></textarea>
+    </label>
+
+    <!-- Honeypot (hidden from users, visible to bots) -->
+    <div class="hp">
+      <label
+        >Website
+        <input type="text" name="website" tabindex="-1" autocomplete="off"
+      /></label>
+    </div>
+
+    <input type="hidden" name="ts" value="<%= Date.now() %>" />
+
+    <button type="submit">Send</button>
+  </form>
+
+  <p class="muted small">
+    Or email directly: <span class="email">contact@yourdomain.com</span>
+  </p>
+
+  <p class="muted small">
+    This site is for entertainment only. All games use virtual currency.
+  </p>
+</section>

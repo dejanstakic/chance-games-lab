@@ -7,6 +7,9 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import dotenv from "dotenv";
 
+import nodemailer from "nodemailer";
+import rateLimit from "express-rate-limit";
+
 // -------------------------------
 // Load environment
 // -------------------------------
@@ -27,6 +30,9 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
 
+// for Render !!
+app.set("trust proxy", 1);
+
 // --------------------------------
 // Middlewares
 // --------------------------------
@@ -38,6 +44,9 @@ app.set("views", join(__dirname, "views"));
 
 // Public static folder (always served)
 app.use(express.static(join(__dirname, "public")));
+
+//
+app.use(express.urlencoded({ extended: true }));
 
 // In production, serve Vite build output
 if (isProduction) {
@@ -83,12 +92,22 @@ import { slotBothWay } from "./server/slot_both_way_core.js";
 // ROUTES: PUBLIC / PRODUCTION
 // -------------------------------
 app.get("/", (req, res) => res.render("pages/index"));
-// app.get("/", (req, res) =>
-//   res.render("layouts/main", {
-//     title: "Chance Games Lab",
-//     body: render("pages/index"),
-//   })
-// );
+
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 min
+  max: 2, // 5 submits per IP per window
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Contact page
+app.get("/contact", (req, res) => res.render("pages/contact"));
+// app.get("/contact", (req, res) => {
+//   res.render("pages/contact", {
+//     title: "Contact",
+//     pageStyles: ["/css/contact.css"], // optional
+//   });
+// });
 
 // Add finished games here...
 app.get("/crazy_jumper", (req, res) => res.render("pages/crazy_jumper"));
@@ -120,6 +139,77 @@ if (!isProduction) {
 app.get("/api/game_1/spin", (req, res) => {
   const genRresult = generateResult();
   res.json({ result: genRresult.result });
+});
+
+// Contact form submit
+app.post("/contact", contactLimiter, async (req, res) => {
+  try {
+    const { name, email, subject, message, website } = req.body; // website = honeypot
+
+    // Honeypot: real users won't fill this
+    if (website && website.trim().length > 0) {
+      return res.status(200).render("pages/contact", {
+        title: "Contact",
+        pageStyles: ["/css/contact.css"],
+        success: true,
+      });
+    }
+
+    // time trap
+    const ts = Number(req.body.ts || 0);
+    if (!ts || Date.now() - ts < 1500) {
+      // too fast -> likely bot
+      return res
+        .status(200)
+        .render("pages/contact", { title: "Contact", success: true });
+    }
+
+    if (!email || !message) {
+      return res.status(400).render("pages/contact", {
+        title: "Contact",
+        pageStyles: ["/css/contact.css"],
+        error: "Please provide your email and a message.",
+      });
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT || 587),
+      secure: process.env.SMTP_SECURE === "true", // false for 587/TLS
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    const safeSubject = (subject || "Website contact").toString().slice(0, 120);
+
+    await transporter.sendMail({
+      from: `"Chance Games Lab" <${process.env.SMTP_USER}>`,
+      to: process.env.CONTACT_TO,
+      replyTo: email,
+      subject: `[Contact] ${safeSubject}`,
+      text:
+        `Name: ${name || "-"}\n` +
+        `Email: ${email}\n` +
+        `Subject: ${safeSubject}\n\n` +
+        `${message}\n`,
+    });
+
+    return res.status(200).render("pages/contact", {
+      title: "Contact",
+      pageStyles: ["/css/contact.css"],
+      success: true,
+    });
+  } catch (err) {
+    console.error("Contact form error:", err);
+    return res.status(500).render("pages/contact", {
+      title: "Contact",
+      pageStyles: ["/css/contact.css"],
+      error:
+        "Sorry—something went wrong while sending your message. Please try again later.",
+    });
+  }
 });
 
 // Keno Basic API
